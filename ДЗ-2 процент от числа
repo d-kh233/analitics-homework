@@ -1,0 +1,3 @@
+x=int(input())
+percent=int(input())
+print(round((x*percent/100),2))
