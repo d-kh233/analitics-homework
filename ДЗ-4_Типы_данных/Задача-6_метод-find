@@ -1,0 +1,5 @@
+str="When he saw Sally (a girl he used to go to school with) in the shop, he could not believe his eyes. She was fantastic (as always)!"
+s="("
+for i in str:
+    while i=="(":
+        str=str.replace(s,"")
