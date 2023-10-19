@@ -1,3 +1,4 @@
 str=input()
 x=input()
 str=str.replace(x,x*2)
+print(str)
