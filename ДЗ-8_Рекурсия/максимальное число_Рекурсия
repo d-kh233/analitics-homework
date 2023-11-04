@@ -1,0 +1,13 @@
+maximum=None
+def recursion_max(a, maximum=None):
+    if maximum==None:
+        maximum = a.pop()
+    b=a.pop()
+    if b> maximum:
+        maximum=b
+    if a:
+        return recursion_max(a, maximum)
+    return maximum
+list1=list(map(int,input('').split()))
+max_numb = recursion_max(list1)
+print(max_numb)
