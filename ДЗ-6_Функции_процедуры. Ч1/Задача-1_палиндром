@@ -2,7 +2,8 @@ stroka=input()
 def palindrome(stroka):
     r=stroka[::-1]
     if r==stroka:
-        return "True"
+        return True
     else:
-        return "False"
+        return False
 p=palindrome(stroka)
+print(p)
