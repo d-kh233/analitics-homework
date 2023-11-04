@@ -1,0 +1,9 @@
+list1= list(map(int,input('').split()))
+def maximum(a):
+    maximum=a[0]
+    for i in a:
+        if i>maximum:
+            maximum=i
+    return maximum
+m_numb=maximum(list1)
+print(m_numb)
