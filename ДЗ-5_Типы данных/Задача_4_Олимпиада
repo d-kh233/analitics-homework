@@ -1,0 +1,14 @@
+names_algebra= list(input('').split())
+names_geometry= list(input('').split())
+names_trigonometry= list(input('').split())
+list_all_names=[*names_algebra,*names_geometry,*names_trigonometry]
+b=0
+for f in list_all_names:
+    a=0
+    if list_all_names.count(f)>1:  
+        a+=list_all_names.count(f)
+if a==3:
+    print(f)
+    b+=1
+if b==0:
+    print("Все три задачи никто не решил.")
