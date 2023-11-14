@@ -1,0 +1,86 @@
+import random
+import os
+field=[['-'for i in range(3)] for i in range(3)]
+def greetings():
+    print('''             Добро пожаловать в крестики нолики!
+          Чтобы начать свой первый ход, введите номер строки, а затем номер стобца (от 0 до 2)''')
+b=random.randint(0,1)  # Определение чем ходит игрок, 0 => O, 1=> X
+def draw_board(field:list):
+    print('  0 1 2')
+    print(f"0|{field[0][0]}|{field[0][1]}|{field[0][2]}|")
+    print(f"1|{field[1][0]}|{field[1][1]}|{field[1][2]}|")
+    print(f"2|{field[2][0]}|{field[2][1]}|{field[2][2]}|")
+def get_computer_move(field):
+    x, y=random.randint(0,2), random.randint(0,2)
+    while field[x][y]!='-':
+        x, y=random.randint(0,2), random.randint(0,2)
+    field[x][y]='O'
+def get_player_move(field):
+    print('Ваш ход:')
+    try:
+        x, y=[int(x) for x in input().split()]
+    except ValueError:
+        print("Переходите, пожалуйста!")
+        return get_player_move(field)
+    if x==y==-1:
+        return True
+    elif abs(x)>2 or abs(y)>2:
+        print("Переходите, пожалуйста!")
+        return get_player_move(field)
+    if field[x][y]!='-':
+        print("Это поле уже занято! Переходите, пожалуйста!")
+        return get_player_move(field)
+    field[x][y]='X'
+    
+def check_winner(field):
+    rows=[set(),set(),set()]
+    cols=[set(),set(),set()]
+    diagonals=[set(),set()]
+    winner=None
+    for i in range (3):
+        for j in range (3):
+            rows[i].add(field[i][j])
+            cols[j].add(field[i][j])
+            if i == j:
+                diagonals[0].add(field[i][j])
+            elif i== 2-j:
+                diagonals[1].add(field[i][j])
+    elems = [rows,cols,diagonals]
+    for elem in elems:
+        for e in elem:
+            if e=={'X'}:
+                winner='Вы'
+                break
+            elif e=={'O'}:
+                winner='ИИ'
+                break
+    return winner
+def main():
+    greetings()
+    field=[['-' for _ in range(3)] for _ in range(3)]
+    winner=None
+    num_steps=0
+    quit=False
+    while not winner and num_steps<9:
+        print('Если вы хотите выйти, введите ход -1')
+        draw_board(field)
+        quit=get_player_move(field)
+        if quit:
+            return 0
+        num_steps+=1
+        winner=check_winner(field)
+        if num_steps<9 and not winner:
+            get_computer_move(field)
+        winner=check_winner(field)
+        num_steps+=1
+        if not winner:
+            winner=check_winner(field)
+        os.system('cls')
+    draw_board(field)
+    if not winner:
+        print ("Ничья")
+    if winner=='Вы':
+        print ("Вы победили")
+    if winner=='ИИ':
+        print ("Вы проиграли")
+main()
