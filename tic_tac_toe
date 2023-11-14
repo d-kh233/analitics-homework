@@ -3,7 +3,7 @@ import os
 field=[['-'for i in range(3)] for i in range(3)]
 def greetings():
     print('''             Добро пожаловать в крестики нолики!
-          Чтобы начать свой первый ход, введите номер строки, а затем номер стобца (от 0 до 2)''')
+          Чтобы начать свой первый ход, введите номер строки, а затем номер столбца (от 0 до 2)''')
 b=random.randint(0,1)  # Определение чем ходит игрок, 0 => O, 1=> X
 def draw_board(field:list):
     print('  0 1 2')
@@ -62,7 +62,8 @@ def main():
     num_steps=0
     quit=False
     while not winner and num_steps<9:
-        print('Если вы хотите выйти, введите ход -1')
+        print('''Если вы хотите выйти, введите ход -1
+               Чтобы сделать ход, введите номер строки, а затем номер столбца (от 0 до 2)''')
         draw_board(field)
         quit=get_player_move(field)
         if quit:
@@ -80,7 +81,7 @@ def main():
     if not winner:
         print ("Ничья")
     if winner=='Вы':
-        print ("Вы победили")
+        print ("Вы победили!")
     if winner=='ИИ':
-        print ("Вы проиграли")
+        print ("Вы проиграли:( ")
 main()
